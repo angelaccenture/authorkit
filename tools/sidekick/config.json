@@ -1,5 +1,11 @@
 {
-  "project": "DA Block Collection",
-  "editUrlLabel": "Document Authoring",
-"editUrlPattern": "https://experience.adobe.com/#/@accenture-partner/aem/editor/canvas/main--authorkit--angelaccenture.ue.da.live/{{pathname}}"
+  "project": "Angel Fun Stuff",
+  "plugins": [
+    {
+      "id": "quick-edit",
+      "title": "Quick Edit",
+      "environments": [ "dev", "preview" ],
+      "event": "quick-edit"
+    }
+  ]
 }
