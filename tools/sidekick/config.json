@@ -6,6 +6,12 @@
       "title": "Quick Edit",
       "environments": [ "dev", "preview" ],
       "event": "quick-edit"
+    },
+     {
+      "id": "ue-edit",
+      "title": "UE",
+      "environments": [ "dev", "preview" ],
+      "event": "ue-edit"
     }
   ]
 }
