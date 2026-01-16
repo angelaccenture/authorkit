@@ -11,7 +11,7 @@
       "id": "ue-edit",
       "title": "UE",
       "environments": [ "dev", "preview" ],
-      "event": "ue-edit"
+      "event": "https://experience.adobe.com/#/@accenture-partner/aem/editor/canvas/main--aemboilerplate--angelaccenture.ue.da.live/{{pathname}}"
     }
   ]
 }
