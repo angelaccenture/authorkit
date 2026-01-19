@@ -1,117 +1,47 @@
-# Author Kit
-For projects that want a few more batteries. Built by the team who brought you da.live and adobe.com.
+# Universal Editor (UE)
 
-## Getting started
+Universal Editor is Adobe's next-generation content editing experience that enables true in-context editing across any implementation. Universal Editor is particularly useful when you need a modern, flexible editing experience that can work across different content repositories and implementations.
 
-### 1. Github
-1. Use this template to make a new repo.
-1. Install [AEM Code Sync](https://da.live/bot).
+## Prerequisites
 
-### 2. DA content
-1. Browse to https://da.live/start.
-2. Follow the steps.
+To use Universal Editor, you need:
+1. A "DX Handle" (e.g., `@nameofmycompany`) found in your experience.adobe.com URL
+2. Your IMS Org/DX Handle must have Universal Editor enabled (requires AEM Sites credits)
+3. A site on da.live
+4. Chrome or Safari browser (currently supported browsers)
 
-### 3. Local development
-1. Clone your new repo to your computer.
-1. Install the AEM CLI using your terminal: `sudo npm install -g @adobe/aem-cli`
-1. Start the AEM CLI: `aem up`.
-1. Open the `{repo}` folder in your favorite code editor and buil something.
-1. **Recommended:** Install common npm packages like linting and testing: `npm i`.
+See https://github.com/adobe/da-live/wiki/Universal-Editor for more details.
 
-## Features
+## Setting Up UE Instrumentation for Custom Blocks
 
-### Localization & globalization
-* Language only support - Ex: en, de, hi, ja
-* Region only support - Ex: en-us, en-ca, de-de, de-ch
-* Hybrid support - Ex: en, en-us, de, de-ch, de-at
-* Fragment-based localized 404s
-* Localized Header & Footer
-* Do not translate support (#_dnt)
+To enable Universal Editor for custom blocks, you need to create three essential JSON configuration files:
 
-### Flexible section authoring
-* Optional containers to constrain content
-* Grids: 1-6
-* Color scheme: light, dark
-* Gap: xs, s, m, l, xl, xxl
-* Spacing: xs, s, m, l, xl, xxl
-* Background: token / image / color / gradient
+1. `component-definitions.json`: Enables the block for Universal Editor
+   - Contains block definitions with unique IDs
+   - Includes the `da` plugin that defines initial content structure
 
-### Base content
-* Universal buttons w/ extensive styles
-* Images w/ retina breakpoint
-* Color scheme support: light, dark
-* Modern favicon support
-* New window support
-* Deep link support
-* Modal support
+2. `component-models.json`: Defines the fields in the UE properties panel
+   - Specifies field types, behaviors, and validation rules
+   - Links fields to block content via CSS selectors
+   - Supports various field types like text, rich text, images, etc.
 
-### Header and footer content
-* Brand - First link in header
-* Main Menu - First list in header
-* Actions - Last section of header
-* Menu & mega menu support
-* Disable header/footer via meta props
+3. `component-filters.json`: Used for container blocks (like Cards or Accordion)
+   - Defines how nested content is handled
+   - Empty array for non-container blocks
 
-### Scheduled content
-* Schedule content using spreadsheets
+### Implementation Steps
 
-### Sidekick
-* Extensible plumbing for plugins
-* Schedule simulator
+1. Add your block to a test page using the document editor
+2. Open the page in Universal Editor
+3. Use the developer console to inspect the `/details` network call
+4. Create the three JSON configuration files based on the block's structure in `/ue/models/blocks`
+5. Add your block to the section filter list in `/ue/models/section.json`
 
-### Performance
-* Extensible LCP detection
+### Block Options Support
 
-### Developer tools
-* Environment detection
-* Extensible logging (console, coralogix, splunk, etc.)
-* Buildless reactive framework support (Lit)
-* Hash utils patterns (#_blank, #_dnt, etc)
-* Modern CSS scoping & nesting
-* AEM Operational Telemetry
+For blocks with multiple options or variations:
+- Use select components for block options
+- Name the fields `classes` or `classes_[suffix]` for multiple options
+- These will be combined into a class list during rendering
 
-### Operations
-* Cloudflare Worker reference implementation
-
-## Patterns
-### Page
-A page is what holds your content. It can be styled using a metadata property called `template` which will load styles that apply to the entire page.
-
-### Section
-A section is a sub-section of your page. It can be styled using a `section-metadata` block. A section will control the layout of blocks.
-
-### Block
-Blocks are children of sections. A block adds visual context to parts of a page.
-
-### Auto Block
-An auto block is a block generated from a pre-defined piece of content. Often times from a link that matches a particular pattern. Link-based auto blocks can be helpful when additional nesting of content is required.
-
-### Default content
-Default content is content that lives outside a block.
-
-## Design System
-
-### Spacing & Gap
-XS, S, M, L, XL, XXL
-
-### Emphasis
-default, quiet, strong, negative
-
-### Buttons
-accent, primary, secondary, negative
-
-(w/ outline variations)
-
-### Columns
-1 - 12
-
-### Grid
-1 - 6
-
-### Color tokens
-blue, gray, green, magenta, organge, red, purple, yellow
-
-(w/ 100-900 variations)
-
-### Color Schemes
-light, dark
+For more detailed information about field types and configuration options, refer to the [Universal Editor documentation](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/universal-editor/field-types). 
