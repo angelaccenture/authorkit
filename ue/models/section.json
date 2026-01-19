@@ -24,6 +24,10 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+             {
+              "name": "Angel Test",
+              "value": "angel"
             }
           ]
         }
